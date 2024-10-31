@@ -1,0 +1,48 @@
+[user]
+name = Matt Pryer
+email = 81967541+mwpryer@users.noreply.github.com
+[core]
+editor = code --wait
+pager = delta
+excludesfile = ~/.gitignore
+autocrlf = input
+[init]
+defaultBranch = main
+[commit]
+# show diff when writing commit message
+verbose = true
+[status]
+short = true
+branch = true
+showStash = true
+[rebase]
+autoStash = true
+[merge]
+conflictstyle = diff3
+[fetch]
+# before fetching, remove any remote refs that no longer exist
+prune = true
+[pull]
+# rebase branches on top of the fetched branch instead of merging
+rebase = true
+[push]
+autoSetupRemote = true
+[log]
+abbrevCommit = true
+[diff]
+# improves git detection of file copies (as well as renames)
+renames = copies
+colorMoved = default
+[interactive]
+# use delta when running commands like `git add -p`
+diffFilter = delta --color-only
+[delta]
+navigate = true
+line-numbers = true
+side-by-side = true
+syntax-theme = Catppuccin Mocha
+[include]
+path = ~/.gitalias.txt
+[alias]
+llr = log-list --date=relative
+lln = log-list --numstat
