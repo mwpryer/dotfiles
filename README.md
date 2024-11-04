@@ -12,7 +12,7 @@
 
 ## Packages
 
-### 🖳 Terminal
+### 💻 Terminal
 
 <details open>
 <summary>Click to expand/collapse</summary>
