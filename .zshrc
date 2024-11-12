@@ -46,9 +46,9 @@ function mkcd() {
 alias mv="mv -vi"
 alias cp="cp -vi"
 alias rm="rm -vI"
-alias ls="eza -a --icons"
-alias ll="eza -lahF --icons  --git"
-alias lt="eza --long --tree --level=3 --icons  --git"
+alias ls="eza -a --icons --group-directories-first"
+alias ll="eza -lahF --icons  --git --group-directories-first"
+alias lt="eza --long --tree --level=3 --icons  --git --group-directories-first"
 alias cat="bat"
 # colourise help output with bat
 alias -g -- -h="-h 2>&1 | bat --language=help --style=plain"
@@ -100,8 +100,10 @@ if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-clou
 # set current GC project as env var
 if [ "$(gcloud config get core/project 2>/dev/null)" != "" ]; then
   export GOOGLE_CLOUD_PROJECT=$(gcloud config get core/project)
+  export GOOGLE_PROJECT_NUMBER=$(gcloud projects describe ${GOOGLE_CLOUD_PROJECT} --format="value(projectNumber)")
 else
   unset GOOGLE_CLOUD_PROJECT
+  unset GOOGLE_PROJECT_NUMBER
 fi
 
 # run on shell startup
