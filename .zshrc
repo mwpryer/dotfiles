@@ -3,6 +3,8 @@ export HISTSIZE=1000
 export SAVEHIST=1000
 export EDITOR="nvim"
 export VISUAL="code --wait"
+# override lazygit config file for mac
+export LG_CONFIG_FILE="$HOME/.config/lazygit/config.yml"
 
 # zsh options
 setopt beep
