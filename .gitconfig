@@ -39,10 +39,13 @@ diffFilter = delta --color-only
 [delta]
 navigate = true
 line-numbers = true
-side-by-side = true
 syntax-theme = Catppuccin Mocha
 [include]
 path = ~/.gitalias.txt
 [alias]
 llr = log-list --date=relative
 lln = log-list --numstat
+# fzf aliases
+af = "!f() { git add $(git ls-files --others --modified --deleted --exclude-standard | fzf --preview='git diff {} | delta' --preview-window='~3' --multi --reverse --border); }; f"
+rf = "!f() { git restore --staged $(git diff --cached --name-only | fzf --preview='git diff --staged {} | delta' --preview-window='~3' --multi --reverse --border); }; f"
+bf = "!f() { git switch $(git branch | fzf --height=20% --layout=reverse --border); }; f"
