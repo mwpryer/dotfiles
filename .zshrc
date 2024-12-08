@@ -16,6 +16,9 @@ bindkey -v
 # completion system
 autoload -Uz compinit
 compinit
+# zsh plugins
+source ~/.config/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.config/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # shell prompt
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
