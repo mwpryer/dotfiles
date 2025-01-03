@@ -3,7 +3,7 @@
 | Category | Tool |
 |----------|------|
 | **Shell** | [Zsh](https://github.com/zsh-users/zsh) |
-| **Terminal** | [kitty](https://github.com/kovidgoyal/kitty) |
+| **Terminal** | [Ghostty](https://github.com/ghostty-org/ghostty) |
 | **Prompt** | [Starship](https://github.com/starship/starship) |
 | **Multiplexer** | [tmux](https://github.com/tmux/tmux) |
 | **Editor** | [Neovim](https://github.com/neovim/neovim) / [Visual Studio Code](https://github.com/microsoft/vscode) |
@@ -18,7 +18,7 @@
 <summary>Click to expand/collapse</summary>
 
 - [Zsh](https://github.com/zsh-users/zsh) - Shell
-- [kitty](https://github.com/kovidgoyal/kitty) - Terminal emulator
+- [Ghostty](https://github.com/ghostty-org/ghostty) - Terminal emulator
 - [Starship](https://github.com/starship/starship) - Custom shell prompt
 - [tmux](https://github.com/tmux/tmux) - Terminal multiplexer
 
