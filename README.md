@@ -34,6 +34,8 @@
 - [Git](https://github.com/git/git) - Version control
 - [lazygit](https://github.com/jesseduffield/lazygit) - Git TUI
 - [delta](https://github.com/dandavison/delta) - Syntax-highlighting pager for git
+- [GitHub CLI](https://github.com/cli/cli) - GitHub CLI
+- [act](https://github.com/nektos/act) - Run GitHub Actions locally
 - [Docker](https://www.docker.com/) - Container runtime
 - [lazydocker](https://github.com/jesseduffield/lazydocker) - Docker TUI
 - [Minikube](https://github.com/kubernetes/minikube) - Local Kubernetes cluster
@@ -59,6 +61,7 @@
 - [fd](https://github.com/sharkdp/fd) - Friendly `find`
 - [ripgrep](https://github.com/BurntSushi/ripgrep) - Improved `grep`
 - [dust](https://github.com/bootandy/dust) - More intuitive `du`
+- [cloc](https://github.com/AlDanial/cloc) - Count lines of code
 - [jq](https://github.com/jqlang/jq) - JSON processor
 - [xclip](https://github.com/astrand/xclip) - CLI clipboard manager
 - [tldr](https://github.com/tldr-pages/tldr) - Simplified man pages
