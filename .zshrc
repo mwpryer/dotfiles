@@ -19,6 +19,9 @@ compinit
 # zsh plugins
 source ~/.config/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.config/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+# zsh plugins for mac
+# source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+# source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
 # shell prompt
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"

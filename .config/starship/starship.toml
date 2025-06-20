@@ -41,8 +41,8 @@ symbol = " "
 symbol = " "
 
 [directory]
-truncation_length = 5
-truncate_to_repo = false
+truncation_length = 3
+truncate_to_repo = true
 truncation_symbol = "…/"
 style = "bold blue"
 read_only = " 󰌾"
@@ -66,7 +66,8 @@ symbol = " "
 symbol = " "
 
 [gcloud]
-format = "[($symbol$account[(@$project)](blue) )](text)"
+format = "$symbol$account[(@$project)]($style) "
+style = "blue"
 symbol = "󱇶 "
 
 [git_branch]
