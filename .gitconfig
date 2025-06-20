@@ -1,22 +1,35 @@
 [user]
 name = Matt Pryer
 email = 81967541+mwpryer@users.noreply.github.com
+signingkey = BB8FF16C7BC1A369
 [core]
 editor = code --wait
 pager = delta
 excludesfile = ~/.gitignore
 autocrlf = input
+# max compression for more cpu but less disk/network
+compression = 9
+whitespace = error
+preloadindex = true
 [init]
 defaultBranch = main
 [commit]
 # show diff when writing commit message
 verbose = true
+sign = true
+[branch]
+sort = -committerdate
+[tag]
+sort = -taggerdate
 [status]
 short = true
 branch = true
 showStash = true
+showUntrackedFiles = all
 [rebase]
 autoStash = true
+# warn if removing commits when manually rebasing
+missingCommitsCheck = warn
 [merge]
 conflictstyle = diff3
 [fetch]
@@ -27,15 +40,20 @@ prune = true
 rebase = true
 [push]
 autoSetupRemote = true
+followTags = true
 [log]
 abbrevCommit = true
 [diff]
 # improves git detection of file copies (as well as renames)
 renames = copies
 colorMoved = default
+context = 3
+interHunkContext = 10
 [interactive]
 # use delta when running commands like `git add -p`
 diffFilter = delta --color-only
+# allow single key input for git commands
+singlekey = true
 [delta]
 navigate = true
 line-numbers = true
@@ -49,3 +67,7 @@ lln = log-list --numstat
 af = "!f() { git add $(git ls-files --others --modified --deleted --exclude-standard | fzf --preview='git diff {} | delta' --preview-window='~3' --multi --reverse --border); }; f"
 rf = "!f() { git restore --staged $(git diff --cached --name-only | fzf --preview='git diff --staged {} | delta' --preview-window='~3' --multi --reverse --border); }; f"
 bf = "!f() { git switch $(git branch | fzf --height=20% --layout=reverse --border); }; f"
+[url "https://github.com/"]
+insteadOf = "gh:"
+[url "https://github.com/mwpryer/"]
+insteadOf = "mwp:"

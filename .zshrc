@@ -5,6 +5,8 @@ export EDITOR="nvim"
 export VISUAL="code --wait"
 # override lazygit config file for mac
 export LG_CONFIG_FILE="$HOME/.config/lazygit/config.yml"
+# set gpg tty for signing commits
+export GPG_TTY=$(tty)
 
 # zsh options
 setopt beep

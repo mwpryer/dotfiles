@@ -2,5 +2,7 @@
 .DS_Store
 
 # ide files
-.idea/
-.vscode/
+.vscode/*
+!.vscode/extensions.json
+.idea
+.iml
