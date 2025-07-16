@@ -43,6 +43,7 @@ export FZF_DEFAULT_OPTS=" \
 --multi"
 
 # shell management
+alias dotfiles="${VISUAL:-${EDITOR}} ~/dotfiles"
 alias s="source ~/.zshrc"
 alias c="clear"
 
@@ -58,7 +59,7 @@ alias cp="cp -vi"
 alias rm="rm -vI"
 alias ls="eza -a --icons --group-directories-first"
 alias ll="eza -lahF --icons  --git --group-directories-first"
-alias lt="eza --long --tree --level=3 --icons  --git --group-directories-first"
+alias lt="eza --long --tree --level=3 --icons  --git --group-directories-first --ignore-glob node_modules"
 alias cat="bat"
 # colourise help output with bat
 alias -g -- -h="-h 2>&1 | bat --language=help --style=plain"
@@ -73,6 +74,19 @@ alias trp="trash-put"
 alias trl="trash-list"
 alias trr="trash-restore"
 
+# applications
+alias v="nvim"
+alias g="git"
+alias lg="lazygit"
+alias dk="docker"
+alias dkc="docker-compose"
+alias ldk="lazydocker"
+alias k="kubectl"
+alias tm="tmux"
+alias gc="gcloud"
+alias gcad="gcloud auth application-default login"
+# start new tmux session with current directory name
+alias tmn="tmux new -s $(pwd | sed 's/.*\///g')"
 # yazi wrapper to drop out at the current directory
 function y() {
   local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
@@ -82,22 +96,20 @@ function y() {
   fi
   rm -f -- "$tmp"
 }
+alias neofetch="neofetch --source $HOME/.config/neofetch/ascii.txt"
 
-# application shortcuts
-alias v="nvim"
-alias g="git"
-alias lg="lazygit"
-alias d="docker"
-alias dc="docker-compose"
-alias ldk="lazydocker"
-alias k="kubectl"
-alias tm="tmux"
-# start new tmux session with current directory name
-alias tmn="tmux new -s $(pwd | sed 's/.*\///g')"
+# development
+alias ni="npm install"
+alias nb="npm run build"
+alias ns="npm start"
+alias nd="npm run dev"
 alias py="/usr/bin/python3"
 alias python="/usr/bin/python3"
 alias serve="python -m http.server"
-alias neofetch="neofetch --source $HOME/.config/neofetch/ascii.txt"
+# kill process by port
+function killp() {
+  lsof -ti:$1 | xargs kill
+}
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
@@ -115,6 +127,3 @@ else
   unset GC_PROJECT_ID
   unset GC_PROJECT_NUMBER
 fi
-
-# run on shell startup
-neofetch
