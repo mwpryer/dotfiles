@@ -42,6 +42,7 @@
 - [kubectl](https://github.com/kubernetes/kubectl) - Kubernetes CLI
 - [k9s](https://github.com/derailed/k9s) - Kubernetes TUI
 - [gcloud](https://cloud.google.com/sdk/gcloud) - Google Cloud CLI
+- [firebase](https://github.com/firebase/firebase-tools) - Firebase CLI
 - [nvm](https://github.com/nvm-sh/nvm) - Node.js version manager
 - [Ollama](https://github.com/ollama/ollama) - Local LLM runtime
 
@@ -61,6 +62,7 @@
 - [fd](https://github.com/sharkdp/fd) - Friendly `find`
 - [ripgrep](https://github.com/BurntSushi/ripgrep) - Improved `grep`
 - [dust](https://github.com/bootandy/dust) - More intuitive `du`
+- [duf](https://github.com/muesli/duf) - A better `df` alternative
 - [cloc](https://github.com/AlDanial/cloc) - Count lines of code
 - [jq](https://github.com/jqlang/jq) - JSON processor
 - [xclip](https://github.com/astrand/xclip) - CLI clipboard manager
