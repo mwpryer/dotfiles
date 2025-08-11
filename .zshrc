@@ -120,10 +120,14 @@ export NVM_DIR="$HOME/.nvm"
 if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
 if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
 # set current GC project as env vars
-if [ "$(gcloud config get core/project 2>/dev/null)" != "" ]; then
-  export GC_PROJECT_ID=$(gcloud config get core/project)
-  export GC_PROJECT_NUMBER=$(gcloud projects describe ${GC_PROJECT_ID} --format="value(projectNumber)")
-else
-  unset GC_PROJECT_ID
-  unset GC_PROJECT_NUMBER
-fi
+function init_gc() {
+  project_id=$(gcloud config get core/project 2>/dev/null)
+  project_number=$(gcloud projects describe ${project_id} --format="value(projectNumber)" 2>/dev/null)
+  if [ -n "$project_id" ] && [ -n "$project_number" ]; then
+    export GC_PROJECT_ID=$project_id
+    export GC_PROJECT_NUMBER=$project_number
+  else
+    unset GC_PROJECT_ID
+    unset GC_PROJECT_NUMBER
+  fi
+}
