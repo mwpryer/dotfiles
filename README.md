@@ -45,6 +45,7 @@
 - [firebase](https://github.com/firebase/firebase-tools) - Firebase CLI
 - [nvm](https://github.com/nvm-sh/nvm) - Node.js version manager
 - [Ollama](https://github.com/ollama/ollama) - Local LLM runtime
+- [Claude Code](https://github.com/anthropics/claude-code) - Claude Code
 
 </details>
 

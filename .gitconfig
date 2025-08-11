@@ -3,7 +3,6 @@ name = Matt Pryer
 email = 81967541+mwpryer@users.noreply.github.com
 signingkey = BB8FF16C7BC1A369
 [core]
-editor = code --wait
 pager = delta
 excludesfile = ~/.gitignore
 autocrlf = input

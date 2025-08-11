@@ -1,8 +1,8 @@
 export HISTFILE=~/.histfile
 export HISTSIZE=1000
 export SAVEHIST=1000
-export EDITOR="nvim"
-export VISUAL="code --wait"
+export EDITOR="cursor"
+export VISUAL="cursor --wait"
 # override lazygit config file for mac
 export LG_CONFIG_FILE="$HOME/.config/lazygit/config.yml"
 # set gpg tty for signing commits
@@ -96,6 +96,7 @@ function y() {
   fi
   rm -f -- "$tmp"
 }
+alias cld="claude --dangerously-skip-permissions"
 alias neofetch="neofetch --source $HOME/.config/neofetch/ascii.txt"
 
 # development
