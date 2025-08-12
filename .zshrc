@@ -132,3 +132,11 @@ function init_gc() {
     unset GC_PROJECT_NUMBER
   fi
 }
+# switch gcloud project with fzf
+function gcf() {
+  local project_id=$(gcloud projects list --format="value(projectId)" | fzf --height 40% --layout reverse --border)
+  if [ -n "$project_id" ]; then
+    gcloud config set project "$project_id"
+    init_gc
+  fi
+}
