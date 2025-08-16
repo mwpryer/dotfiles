@@ -1,12 +1,17 @@
 export HISTFILE=~/.histfile
-export HISTSIZE=1000
-export SAVEHIST=1000
+export HISTSIZE=10000
+export SAVEHIST=10000
 export EDITOR="cursor"
 export VISUAL="cursor --wait"
 # override lazygit config file for mac
 export LG_CONFIG_FILE="$HOME/.config/lazygit/config.yml"
 # set gpg tty for signing commits
 export GPG_TTY=$(tty)
+
+# source file if it exists
+function safe_source() {
+  [ -s "$1" ] && source "$1"
+}
 
 # zsh options
 setopt beep
@@ -19,11 +24,13 @@ bindkey -v
 autoload -Uz compinit
 compinit
 # zsh plugins
-source ~/.config/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/.config/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+safe_source "$HOME/.config/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+safe_source "$HOME/.config/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 # zsh plugins for mac
-# source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-# source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+if command -v brew >/dev/null 2>&1; then
+  safe_source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+  safe_source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+fi
 
 # shell prompt
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
@@ -91,9 +98,8 @@ alias tmn="tmux new -s $(pwd | sed 's/.*\///g')"
 function y() {
   local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
   yazi "$@" --cwd-file="$tmp"
-  if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-    builtin cd -- "$cwd"
-  fi
+  IFS= read -r -d '' cwd < "$tmp"
+  [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
   rm -f -- "$tmp"
 }
 alias cld="claude --dangerously-skip-permissions"
@@ -136,7 +142,7 @@ function init_gc() {
 function gcf() {
   local project_id=$(gcloud projects list --format="value(projectId)" | fzf --height 40% --layout reverse --border)
   if [ -n "$project_id" ]; then
-    gcloud config set project "$project_id"
+    gcloud config set project $project_id
     init_gc
   fi
 }

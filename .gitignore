@@ -1,7 +1,7 @@
-# os files
+# os
 .DS_Store
 
-# ide files
+# ide
 .vscode/*
 !.vscode/extensions.json
 .idea
