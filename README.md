@@ -44,6 +44,7 @@
 - [gcloud](https://cloud.google.com/sdk/gcloud) - Google Cloud CLI
 - [firebase](https://github.com/firebase/firebase-tools) - Firebase CLI
 - [nvm](https://github.com/nvm-sh/nvm) - Node.js version manager
+- [bun](https://github.com/oven-sh/bun) - Bun.js runtime
 - [Ollama](https://github.com/ollama/ollama) - Local LLM runtime
 - [Claude Code](https://github.com/anthropics/claude-code) - Claude Code
 
