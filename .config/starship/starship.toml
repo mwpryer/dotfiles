@@ -18,10 +18,14 @@ $line_break\
 $character"""
 
 [aws]
-symbol = "󰸏  "
+symbol = " "
 
 [buf]
 symbol = " "
+
+[bun]
+format = "[$symbol($version )]($style)"
+symbol = " "
 
 [c]
 format = "[$symbol($version(-$name) )]($style)"
@@ -31,6 +35,14 @@ symbol = " "
 show_milliseconds = true
 style = "bold subtext0"
 
+[cpp]
+format = "[$symbol($version(-$name) )]($style)"
+symbol = " "
+
+[cmake]
+format = "[$symbol($version )]($style)"
+symbol = " "
+
 [conda]
 symbol = " "
 
@@ -39,6 +51,10 @@ symbol = " "
 
 [dart]
 symbol = " "
+
+[deno]
+format = "[$symbol($version )]($style)"
+symbol = " "
 
 [directory]
 truncation_length = 3
@@ -62,6 +78,9 @@ symbol = " "
 [fill]
 symbol = " "
 
+[fortran]
+symbol = " "
+
 [fossil_branch]
 symbol = " "
 
@@ -80,12 +99,12 @@ tag_symbol = '  '
 [git_metrics]
 disabled = false
 
-[gradle]
-symbol = " "
-
 [golang]
 format = "[$symbol($version )]($style)"
 symbol = " "
+
+[gradle]
+symbol = " "
 
 [guix_shell]
 symbol = " "
@@ -135,6 +154,54 @@ symbol = " "
 [ocaml]
 symbol = " "
 
+[os.symbols]
+Alpaquita = " "
+Alpine = " "
+AlmaLinux = " "
+Amazon = " "
+Android = " "
+AOSC = " "
+Arch = " "
+Artix = " "
+CachyOS = " "
+CentOS = " "
+Debian = " "
+DragonFly = " "
+Emscripten = " "
+EndeavourOS = " "
+Fedora = " "
+FreeBSD = " "
+Garuda = "󰛓 "
+Gentoo = " "
+HardenedBSD = "󰞌 "
+Illumos = "󰈸 "
+Kali = " "
+Linux = " "
+Mabox = " "
+Macos = " "
+Manjaro = " "
+Mariner = " "
+MidnightBSD = " "
+Mint = " "
+NetBSD = " "
+NixOS = " "
+Nobara = " "
+OpenBSD = "󰈺 "
+openSUSE = " "
+OracleLinux = "󰌷 "
+Pop = " "
+Raspbian = " "
+Redhat = " "
+RedHatEnterprise = " "
+RockyLinux = " "
+Redox = "󰀘 "
+Solus = "󰠳 "
+SUSE = " "
+Ubuntu = " "
+Unknown = " "
+Void = " "
+Windows = "󰍲 "
+
 [package]
 symbol = "󰏗 "
 
@@ -147,6 +214,9 @@ symbol = " "
 [pijul_channel]
 symbol = " "
 
+[pixi]
+symbol = "󰏗 "
+
 [python]
 format = "[${symbol}${pyenv_prefix}(${version} )(\\($virtualenv\\) )]($style)"
 symbol = " "
@@ -155,13 +225,18 @@ symbol = " "
 symbol = "󰟔 "
 
 [ruby]
+format = "[$symbol($version )]($style)"
 symbol = " "
 
 [rust]
+format = "[$symbol($version )]($style)"
 symbol = "󱘗 "
 
 [scala]
 symbol = " "
+
+[status]
+symbol = " "
 
 [swift]
 symbol = " "
@@ -170,6 +245,9 @@ symbol = " "
 format = "[\\[$time\\]]($style)"
 style = "subtext0"
 disabled = false
+
+[xmake]
+symbol = " "
 
 [zig]
 symbol = " "

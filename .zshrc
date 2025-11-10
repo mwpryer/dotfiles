@@ -3,8 +3,9 @@ export HISTSIZE=10000
 export SAVEHIST=10000
 export EDITOR="cursor"
 export VISUAL="cursor --wait"
-# override lazygit config file for mac
+# override config files for mac
 export LG_CONFIG_FILE="$HOME/.config/lazygit/config.yml"
+export K9S_CONFIG_DIR="$HOME/.config/k9s"
 # set gpg tty for signing commits
 export GPG_TTY=$(tty)
 
