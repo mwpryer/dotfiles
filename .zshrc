@@ -3,9 +3,6 @@ export HISTSIZE=10000
 export SAVEHIST=10000
 export EDITOR="cursor"
 export VISUAL="cursor --wait"
-# override config files for mac
-export LG_CONFIG_FILE="$HOME/.config/lazygit/config.yml"
-export K9S_CONFIG_DIR="$HOME/.config/k9s"
 # set gpg tty for signing commits
 export GPG_TTY=$(tty)
 
@@ -15,6 +12,7 @@ function safe_source() {
 }
 
 # zsh options
+setopt autocd
 setopt beep
 setopt extendedglob
 setopt nomatch
@@ -25,9 +23,9 @@ bindkey -v
 autoload -Uz compinit
 compinit
 # zsh plugins
-safe_source "$HOME/.config/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-safe_source "$HOME/.config/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
-# zsh plugins for mac
+safe_source "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+safe_source "/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+# load plugins via homebrew on mac
 if command -v brew >/dev/null 2>&1; then
   safe_source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
   safe_source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
@@ -51,11 +49,13 @@ export FZF_DEFAULT_OPTS=" \
 --multi"
 
 # shell management
-alias dotfiles="${VISUAL:-${EDITOR}} ~/dotfiles"
+alias dotfiles="${VISUAL:-${EDITOR}} -n ~/dotfiles"
+alias sysfiles="${VISUAL:-${EDITOR}} -n ~/sysfiles"
 alias s="source ~/.zshrc"
 alias c="clear"
 
 # file management
+alias -- -="cd -"
 alias ..="cd .."
 alias ...="cd ../.."
 alias mkd="mkdir -pv"
@@ -91,10 +91,10 @@ alias dkc="docker-compose"
 alias ldk="lazydocker"
 alias k="kubectl"
 alias tm="tmux"
-alias gc="gcloud"
-alias gcad="gcloud auth application-default login"
 # start new tmux session with current directory name
-alias tmn="tmux new -s $(pwd | sed 's/.*\///g')"
+function tmn() {
+    tmux new -s "$(basename "$PWD")"
+}
 # yazi wrapper to drop out at the current directory
 function y() {
   local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
@@ -103,34 +103,52 @@ function y() {
   [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
   rm -f -- "$tmp"
 }
-alias cld="claude --dangerously-skip-permissions"
-alias neofetch="neofetch --source $HOME/.config/neofetch/ascii.txt"
+# override config files for mac
+export LG_CONFIG_FILE="$HOME/.config/lazygit/config.yml"
+export K9S_CONFIG_DIR="$HOME/.config/k9s"
 
 # development
 alias ni="npm install"
 alias nb="npm run build"
+alias nf="npm run format"
 alias ns="npm start"
 alias nd="npm run dev"
+alias nt="npm test"
 alias py="/usr/bin/python3"
 alias python="/usr/bin/python3"
 alias serve="python -m http.server"
 # kill process by port
 function killp() {
-  lsof -ti:$1 | xargs kill
+    if [ -z "$1" ]; then
+      echo "Usage: killp <port>"
+      return 1
+    fi
+    lsof -ti:$1 | xargs kill 2>/dev/null || echo "No process found on port $1"
 }
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+safe_source "$NVM_DIR/nvm.sh"
+safe_source "$NVM_DIR/bash_completion"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+safe_source "$HOME/.bun/_bun"
+
+# uv
+eval "$(uv generate-shell-completion zsh)"
+eval "$(uvx --generate-shell-completion zsh)"
 
 # gcloud
-if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
-if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
+safe_source "$HOME/google-cloud-sdk/path.zsh.inc"
+safe_source "$HOME/google-cloud-sdk/completion.zsh.inc"
+alias gc="gcloud"
+alias gcad="gcloud auth application-default login"
 # set current GC project as env vars
 function init_gc() {
-  project_id=$(gcloud config get core/project 2>/dev/null)
-  project_number=$(gcloud projects describe ${project_id} --format="value(projectNumber)" 2>/dev/null)
+  local project_id=$(gcloud config get core/project 2>/dev/null)
+  local project_number=$(gcloud projects describe ${project_id} --format="value(projectNumber)" 2>/dev/null)
   if [ -n "$project_id" ] && [ -n "$project_number" ]; then
     export GC_PROJECT_ID=$project_id
     export GC_PROJECT_NUMBER=$project_number
@@ -148,9 +166,10 @@ function gcf() {
   fi
 }
 
-# bun completions
-[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+# claude code
+export PATH="$HOME/.local/bin:$PATH"
+alias cld="claude --dangerously-skip-permissions"
+alias cldr="claude --dangerously-skip-permissions --resume"
 
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+# add custom scripts to path
+export PATH="$HOME/bin:$PATH"

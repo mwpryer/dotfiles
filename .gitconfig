@@ -6,12 +6,12 @@ signingkey = BB8FF16C7BC1A369
 pager = delta
 excludesfile = ~/.gitignore
 autocrlf = input
-# max compression for more cpu but less disk/network
-compression = 9
 whitespace = error
 preloadindex = true
 [init]
 defaultBranch = main
+[help]
+autocorrect = prompt
 [commit]
 # show diff when writing commit message
 verbose = true
@@ -25,15 +25,31 @@ short = true
 branch = true
 showStash = true
 showUntrackedFiles = all
+[blame]
+# recent changes are highlighted more brightly
+coloring = highlightRecent
+[column]
+# display branch/tag lists in columns when terminal is wide
+ui = auto
 [rebase]
 autoStash = true
 # warn if removing commits when manually rebasing
 missingCommitsCheck = warn
+# auto-update stacked branches when rebasing
+updateRefs = true
+[rerere]
+enabled = true
 [merge]
-conflictstyle = diff3
+conflictstyle = zdiff3
 [fetch]
 # before fetching, remove any remote refs that no longer exist
 prune = true
+# validate object integrity on fetch/receive/transfer
+fsckobjects = true
+[receive]
+fsckObjects = true
+[transfer]
+fsckobjects = true
 [pull]
 # rebase branches on top of the fetched branch instead of merging
 rebase = true
@@ -43,11 +59,15 @@ followTags = true
 [log]
 abbrevCommit = true
 [diff]
+tool = critique
+# produces cleaner diffs than the default myers algorithm
+algorithm = histogram
 # improves git detection of file copies (as well as renames)
 renames = copies
 colorMoved = default
-context = 3
 interHunkContext = 10
+[difftool "critique"]
+cmd = critique difftool \"$LOCAL\" \"$REMOTE\"
 [interactive]
 # use delta when running commands like `git add -p`
 diffFilter = delta --color-only
@@ -60,6 +80,7 @@ syntax-theme = Catppuccin Mocha
 [include]
 path = ~/.gitalias.txt
 [alias]
+llh = log-list -n 5
 llr = log-list --date=relative
 lln = log-list --numstat
 # fzf aliases
