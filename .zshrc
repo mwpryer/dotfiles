@@ -11,6 +11,14 @@ function safe_source() {
   [ -s "$1" ] && source "$1"
 }
 
+# prepend to PATH if not already present
+function prepend_path() {
+  case ":$PATH:" in
+    *":$1:"*) ;;
+    *) export PATH="$1:$PATH" ;;
+  esac
+}
+
 # zsh options
 setopt autocd
 setopt beep
@@ -108,12 +116,11 @@ export LG_CONFIG_FILE="$HOME/.config/lazygit/config.yml"
 export K9S_CONFIG_DIR="$HOME/.config/k9s"
 
 # development
-alias ni="npm install"
-alias nb="npm run build"
-alias nf="npm run format"
-alias ns="npm start"
-alias nd="npm run dev"
-alias nt="npm test"
+alias ns="nr"
+alias nd="nr dev"
+alias nb="nr build"
+alias nf="nr format"
+alias nt="nr test"
 alias py="/usr/bin/python3"
 alias python="/usr/bin/python3"
 alias serve="python -m http.server"
@@ -131,9 +138,13 @@ export NVM_DIR="$HOME/.nvm"
 safe_source "$NVM_DIR/nvm.sh"
 safe_source "$NVM_DIR/bash_completion"
 
+# pnpm
+export PNPM_HOME="$HOME/.local/share/pnpm"
+prepend_path "$PNPM_HOME"
+
 # bun
 export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+prepend_path "$BUN_INSTALL/bin"
 safe_source "$HOME/.bun/_bun"
 
 # uv
@@ -167,9 +178,9 @@ function gcf() {
 }
 
 # claude code
-export PATH="$HOME/.local/bin:$PATH"
+prepend_path "$HOME/.local/bin"
 alias cld="claude --dangerously-skip-permissions"
 alias cldr="claude --dangerously-skip-permissions --resume"
 
 # add custom scripts to path
-export PATH="$HOME/bin:$PATH"
+prepend_path "$HOME/bin"

@@ -87,6 +87,8 @@ lln = log-list --numstat
 af = "!f() { git add $(git ls-files --others --modified --deleted --exclude-standard | fzf --preview='git diff {} | delta' --preview-window='~3' --multi --reverse --border); }; f"
 rf = "!f() { git restore --staged $(git diff --cached --name-only | fzf --preview='git diff --staged {} | delta' --preview-window='~3' --multi --reverse --border); }; f"
 bf = "!f() { git switch $(git branch | fzf --height=20% --layout=reverse --border); }; f"
+[filter "homedir"]
+	clean = sed \"s|$HOME|\\$HOME|g\"
 [url "https://github.com/"]
 insteadOf = "gh:"
 [url "https://github.com/mwpryer/"]
