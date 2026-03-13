@@ -1,0 +1,9 @@
+anthropic.claude-code
+catppuccin.catppuccin-vsc
+editorconfig.editorconfig
+github.copilot-chat
+ms-vscode-remote.remote-ssh
+ms-vscode-remote.remote-ssh-edit
+ms-vscode.remote-explorer
+oxc.oxc-vscode
+vscodevim.vim

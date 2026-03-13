@@ -1,0 +1,13 @@
+{
+  "workbench.colorTheme": "Catppuccin Mocha",
+  "editor.fontFamily": "JetBrainsMono Nerd Font Mono, monospace",
+  "editor.tabSize": 2,
+  "editor.minimap.enabled": false,
+  "editor.formatOnSave": true,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "files.exclude": {
+    "**/dist": true
+  },
+  "search.exclude": {},
+  "explorer.confirmDelete": false,
+}

@@ -1,8 +1,7 @@
 gui:
-  # Catppuccin Mocha Blue theme (https://github.com/catppuccin/lazygit)
   theme:
     activeBorderColor:
-      - "#89b4fa"
+      - "#b4befe"
       - bold
     inactiveBorderColor:
       - "#a6adc8"
@@ -13,7 +12,7 @@ gui:
     cherryPickedCommitBgColor:
       - "#45475a"
     cherryPickedCommitFgColor:
-      - "#89b4fa"
+      - "#b4befe"
     unstagedChangesColor:
       - "#f38ba8"
     defaultFgColor:

@@ -6,7 +6,7 @@
 | **Terminal** | [Ghostty](https://github.com/ghostty-org/ghostty) |
 | **Prompt** | [Starship](https://github.com/starship/starship) |
 | **Multiplexer** | [tmux](https://github.com/tmux/tmux) |
-| **Editor** | [Visual Studio Code](https://github.com/microsoft/vscode) / [Cursor](https://www.cursor.com/) |
+| **Editor** | [Visual Studio Code](https://github.com/microsoft/vscode) |
 | **Font** | [JetBrainsMono Nerd Font](https://www.nerdfonts.com/font-downloads) |
 | **Theme** | [Catppuccin Mocha](https://github.com/catppuccin/catppuccin) |
 
@@ -30,7 +30,7 @@
 <summary>Click to expand/collapse</summary>
 
 - [Visual Studio Code](https://github.com/microsoft/vscode) - Code editor
-- [Cursor](https://www.cursor.com/) - AI code editor
+- [Neovim](https://github.com/neovim/neovim) - Text editor
 - [Git](https://github.com/git/git) - Version control
 - [lazygit](https://github.com/jesseduffield/lazygit) - Git TUI
 - [critique](https://github.com/remorses/critique) - Git diff review TUI
@@ -41,14 +41,15 @@
 - [lazydocker](https://github.com/jesseduffield/lazydocker) - Docker TUI
 - [Minikube](https://github.com/kubernetes/minikube) - Local Kubernetes cluster
 - [kubectl](https://github.com/kubernetes/kubectl) - Kubernetes CLI
-- [k9s](https://github.com/derailed/k9s) - Kubernetes TUI
 - [gcloud](https://cloud.google.com/sdk/gcloud) - Google Cloud CLI
 - [firebase](https://github.com/firebase/firebase-tools) - Firebase CLI
 - [nvm](https://github.com/nvm-sh/nvm) - Node.js version manager
+- [pnpm](https://github.com/pnpm/pnpm) - Node.js package manager
 - [bun](https://github.com/oven-sh/bun) - Bun.js runtime
 - [uv](https://github.com/astral-sh/uv) - Python package manager
 - [Ollama](https://github.com/ollama/ollama) - Local LLM runtime
 - [Claude Code](https://github.com/anthropics/claude-code) - Claude Code
+- [OpenCode](https://github.com/anomalyco/opencode) - OpenCode
 
 </details>
 

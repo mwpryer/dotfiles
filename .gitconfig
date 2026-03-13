@@ -26,10 +26,10 @@ branch = true
 showStash = true
 showUntrackedFiles = all
 [blame]
-# recent changes are highlighted more brightly
+# brighter highlight for recent changes
 coloring = highlightRecent
 [column]
-# display branch/tag lists in columns when terminal is wide
+# show branch/tag in columns when wide
 ui = auto
 [rebase]
 autoStash = true
@@ -42,7 +42,7 @@ enabled = true
 [merge]
 conflictstyle = zdiff3
 [fetch]
-# before fetching, remove any remote refs that no longer exist
+# before fetching, rm remote refs that no longer exist
 prune = true
 # validate object integrity on fetch/receive/transfer
 fsckobjects = true
@@ -51,7 +51,7 @@ fsckObjects = true
 [transfer]
 fsckobjects = true
 [pull]
-# rebase branches on top of the fetched branch instead of merging
+# rebase on top of fetched branch instead of merging
 rebase = true
 [push]
 autoSetupRemote = true
@@ -60,9 +60,9 @@ followTags = true
 abbrevCommit = true
 [diff]
 tool = critique
-# produces cleaner diffs than the default myers algorithm
+# cleaner diffs than default myers algorithm
 algorithm = histogram
-# improves git detection of file copies (as well as renames)
+# also detect copies
 renames = copies
 colorMoved = default
 interHunkContext = 10
@@ -71,7 +71,7 @@ cmd = critique difftool \"$LOCAL\" \"$REMOTE\"
 [interactive]
 # use delta when running commands like `git add -p`
 diffFilter = delta --color-only
-# allow single key input for git commands
+# single key input for git commands
 singlekey = true
 [delta]
 navigate = true
@@ -79,16 +79,9 @@ line-numbers = true
 syntax-theme = Catppuccin Mocha
 [include]
 path = ~/.gitalias.txt
-[alias]
-llh = log-list -n 5
-llr = log-list --date=relative
-lln = log-list --numstat
-# fzf aliases
-af = "!f() { git add $(git ls-files --others --modified --deleted --exclude-standard | fzf --preview='git diff {} | delta' --preview-window='~3' --multi --reverse --border); }; f"
-rf = "!f() { git restore --staged $(git diff --cached --name-only | fzf --preview='git diff --staged {} | delta' --preview-window='~3' --multi --reverse --border); }; f"
-bf = "!f() { git switch $(git branch | fzf --height=20% --layout=reverse --border); }; f"
+path = ~/.gitaliases
 [filter "homedir"]
-	clean = sed \"s|$HOME|\\$HOME|g\"
+clean = sed \"s|$HOME|\\$HOME|g\"
 [url "https://github.com/"]
 insteadOf = "gh:"
 [url "https://github.com/mwpryer/"]

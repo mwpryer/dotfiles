@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# vs code wrapper, injects --user-data-dir and delegates to real binary
+
+SELF="$(realpath "$0")"
+REAL_CODE=""
+
+# find first `code` in path that isn't this wrapper
+IFS=:
+for dir in ${PATH}; do
+  candidate="${dir}/code"
+  if [[ -x "${candidate}" ]] && [[ "$(realpath "${candidate}")" != "${SELF}" ]]; then
+    REAL_CODE="${candidate}"
+    break
+  fi
+done
+unset IFS
+
+exec "${REAL_CODE}" --user-data-dir "${HOME}/.config/code" "$@"

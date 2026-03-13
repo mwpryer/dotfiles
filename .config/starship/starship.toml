@@ -1,4 +1,5 @@
-# Catppuccin Mocha theme (https://github.com/catppuccin/starship)
+"$schema" = "https://starship.rs/config-schema.json"
+
 palette = "catppuccin_mocha"
 
 format = """
@@ -85,8 +86,7 @@ symbol = " "
 symbol = " "
 
 [gcloud]
-format = "$symbol$account[(@$project)]($style) "
-style = "blue"
+format = "([$symbol$account](white))([@$project](blue)) "
 symbol = "󱇶 "
 
 [git_branch]
@@ -167,6 +167,7 @@ CachyOS = " "
 CentOS = " "
 Debian = " "
 DragonFly = " "
+Elementary = " "
 Emscripten = " "
 EndeavourOS = " "
 Fedora = " "
@@ -175,6 +176,7 @@ Garuda = "󰛓 "
 Gentoo = " "
 HardenedBSD = "󰞌 "
 Illumos = "󰈸 "
+Ios = "󰀷 "
 Kali = " "
 Linux = " "
 Mabox = " "
@@ -201,6 +203,7 @@ Ubuntu = " "
 Unknown = " "
 Void = " "
 Windows = "󰍲 "
+Zorin = " "
 
 [package]
 symbol = "󰏗 "

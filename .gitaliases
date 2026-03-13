@@ -1,0 +1,17 @@
+[alias]
+# log
+llh = log-list -n 5
+llr = log-list --date=relative
+lln = log-list --numstat
+
+# fzf
+af = "!f() { git add $(git ls-files --others --modified --deleted --exclude-standard | fzf --preview='git diff {} | delta' --preview-window='~3' --multi --reverse --border); }; f"
+rf = "!f() { git restore --staged $(git diff --cached --name-only | fzf --preview='git diff --staged {} | delta' --preview-window='~3' --multi --reverse --border); }; f"
+bf = "!f() { git switch $(git branch | fzf --reverse --border); }; f"
+df = "!f() { git diff --name-only ${1:-HEAD} | fzf --preview=\"git diff ${1:-HEAD} -- {} | delta\" --preview-window='~3' --multi --reverse --border; }; f"
+xf = "!f() { git restore $(git diff --name-only | fzf --preview='git diff {} | delta' --preview-window='~3' --multi --reverse --border); }; f"
+
+# amend, preserve timestamps
+recommit = "!f() { GIT_COMMITTER_DATE=\"$(git log -1 --format=%aD)\" git commit --amend --no-edit --date=\"$(git log -1 --format=%aD)\" \"$@\"; }; f"
+reword = "!f() { GIT_COMMITTER_DATE=\"$(git log -1 --format=%aD)\" git commit --amend --date=\"$(git log -1 --format=%aD)\" \"$@\"; }; f"
+redate = "!f() { GIT_COMMITTER_DATE=\"$1\" git commit --amend --no-edit --date=\"$1\"; }; f"

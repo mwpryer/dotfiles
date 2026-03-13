@@ -1,5 +1,4 @@
 gui:
-  # Catppuccin Mocha Blue theme (https://github.com/catppuccin/lazygit)
   theme:
     activeBorderColor:
       - "#89b4fa"

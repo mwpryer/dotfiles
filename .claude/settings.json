@@ -1,7 +1,0 @@
-{
-  "model": "opus",
-  "statusLine": {
-    "type": "command",
-    "command": "bun x ccusage statusline"
-  }
-}
