@@ -11,6 +11,10 @@ bf = "!f() { git switch $(git branch | fzf --reverse --border); }; f"
 df = "!f() { git diff --name-only ${1:-HEAD} | fzf --preview=\"git diff ${1:-HEAD} -- {} | delta\" --preview-window='~3' --multi --reverse --border; }; f"
 xf = "!f() { git restore $(git diff --name-only | fzf --preview='git diff {} | delta' --preview-window='~3' --multi --reverse --border); }; f"
 
+# mirror
+sync = "!git add -A && git commit -m \"sync\" && git push"
+resync = "!git add -A && git commit --amend --no-edit && git push --force-with-lease"
+
 # amend, preserve timestamps
 recommit = "!f() { GIT_COMMITTER_DATE=\"$(git log -1 --format=%aD)\" git commit --amend --no-edit --date=\"$(git log -1 --format=%aD)\" \"$@\"; }; f"
 reword = "!f() { GIT_COMMITTER_DATE=\"$(git log -1 --format=%aD)\" git commit --amend --date=\"$(git log -1 --format=%aD)\" \"$@\"; }; f"
