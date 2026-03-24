@@ -4,10 +4,16 @@
   "editor.tabSize": 2,
   "editor.minimap.enabled": false,
   "editor.formatOnSave": true,
+  "editor.defaultFormatter": "oxc.oxc-vscode",
   "diffEditor.ignoreTrimWhitespace": false,
   "files.exclude": {
+    "**/node_modules": true,
     "**/dist": true
   },
-  "search.exclude": {},
+  "search.exclude": {
+    "package-lock.json": true,
+    "pnpm-lock.yaml": true,
+    "bun.lock": true,
+  },
   "explorer.confirmDelete": false,
 }

@@ -11,12 +11,11 @@ safe_source() {
   [[ -s "$1" ]] && source "$1"
 }
 
-# prepend to path, skip duplicates
+# deduplicate PATH, keeping first occurrence
+typeset -U PATH path
+
 prepend_path() {
-  case ":${PATH}:" in
-    *":$1:"*) ;;
-    *) export PATH="$1:${PATH}" ;;
-  esac
+  path=("$1" $path)
 }
 
 # zsh options
@@ -199,7 +198,7 @@ k() {
 # fuzzy-find and kill processes
 kf() {
   local pid
-  pid="$(ps -u "${USER}" -o pid,%cpu,%mem,start,args --cols 120 | fzf -m --header-lines=1 | awk '{print $1}')"
+  pid="$(ps -u "${USER}" -ww -o pid,%cpu,%mem,start,args | fzf -m --header-lines=1 | awk '{print $1}')"
   [[ -n "${pid}" ]] && echo "${pid}" | xargs kill -"${1:-9}"
 }
 # kill process by port
