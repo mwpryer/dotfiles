@@ -82,6 +82,7 @@ path = ~/.gitalias.txt
 path = ~/.gitaliases
 [filter "homedir"]
 clean = sed \"s|$HOME|\\$HOME|g\"
+smudge = sed \"s|\\$HOME|$HOME|g\"
 [url "https://github.com/"]
 insteadOf = "gh:"
 [url "https://github.com/mwpryer/"]

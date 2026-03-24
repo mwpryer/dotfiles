@@ -1,1 +1,2 @@
-.config/btop/btop.conf filter=homedir
+* filter=homedir
+.gitconfig filter=
