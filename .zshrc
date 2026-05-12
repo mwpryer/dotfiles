@@ -14,10 +14,6 @@ safe_source() {
 # deduplicate PATH, keeping first occurrence
 typeset -U PATH path
 
-prepend_path() {
-  path=("$1" $path)
-}
-
 # zsh options
 setopt autocd
 setopt beep
@@ -219,11 +215,11 @@ safe_source "${NVM_DIR}/bash_completion"
 
 # pnpm
 export PNPM_HOME="${HOME}/.local/share/pnpm"
-prepend_path "${PNPM_HOME}"
+path=("${PNPM_HOME}" $path)
 
 # bun
 export BUN_INSTALL="${HOME}/.bun"
-prepend_path "${BUN_INSTALL}/bin"
+path=("${BUN_INSTALL}/bin" $path)
 safe_source "${HOME}/.bun/_bun"
 
 # uv
@@ -236,7 +232,7 @@ safe_source "${HOME}/google-cloud-sdk/completion.zsh.inc"
 alias gc="gcloud"
 alias gcad="gcloud auth application-default login"
 # export current gcloud project as env vars
-gci() {
+gcpe() {
   local project_id="$(gcloud config get core/project 2>/dev/null)"
   local project_number="$(gcloud projects describe "${project_id}" --format="value(projectNumber)" 2>/dev/null)"
   if [[ -n "${project_id}" ]] && [[ -n "${project_number}" ]]; then
@@ -248,16 +244,44 @@ gci() {
   fi
 }
 # switch gcloud project with fzf
-gcf() {
+gcpf() {
   local project_id="$(gcloud projects list --format="value(projectId)" | fzf --height 40% --layout reverse --border)"
   if [[ -n "${project_id}" ]]; then
     gcloud config set project "${project_id}"
-    gci
+    gcpe
   fi
 }
+# switch gcloud account with fzf
+gcaf() {
+  local account="$(gcloud auth list --format="value(account)" | fzf --height 40% --layout reverse --border)"
+  if [[ -n "${account}" ]]; then
+    gcloud config set account "${account}"
+    gcpe
+  fi
+}
+# revoke gcloud accounts with fzf multi-select (tab to mark)
+gcarf() {
+  local accounts="$(gcloud auth list --format="value(account)" | fzf -m --height 40% --layout reverse --border --header="tab to select, enter to revoke")"
+  [[ -n "${accounts}" ]] && echo "${accounts}" | xargs gcloud auth revoke
+}
+# switch gcloud configuration with fzf (bundle of account + project + defaults)
+gccf() {
+  local config="$(gcloud config configurations list --format="value(name)" | fzf --height 40% --layout reverse --border)"
+  if [[ -n "${config}" ]]; then
+    gcloud config configurations activate "${config}"
+    gcpe
+  fi
+}
+# curl any gcp api with auto-injected bearer token
+gcurl() {
+  curl -H "Authorization: Bearer $(gcloud auth print-access-token)" -H "Content-Type: application/json" "$@"
+}
+# append to a gcloud command to format output
+alias -g :j='--format=json | jq -C | less -RFX'
+alias -g :y='--format=yaml | bat -l yaml --style=plain --paging=auto'
 
 # claude code
-prepend_path "${HOME}/.local/bin"
+path=("${HOME}/.local/bin" $path)
 alias cld="claude --dangerously-skip-permissions"
 alias cldr="claude --dangerously-skip-permissions --resume"
 
@@ -266,4 +290,4 @@ alias oc="opencode"
 alias ocr="opencode -c"
 
 # custom scripts
-prepend_path "${HOME}/bin"
+path=("${HOME}/bin" $path)
