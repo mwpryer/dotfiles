@@ -1,0 +1,51 @@
+{
+  "version": 3,
+  "lines": [
+    [
+      { "id": "1", "type": "model", "color": "hex:89b4fa", "bold": true, "rawValue": true },
+      { "id": "2", "type": "custom-text", "customText": " (", "color": "hex:a6adc8" },
+      { "id": "3", "type": "custom-command", "color": "hex:a6adc8", "commandPath": "jq -r '(.cost.total_duration_ms // 0) as $ms | (($ms/60000)|floor) as $t | ($t/60|floor) as $h | ($t%60) as $m | if $t<1 then \"<1m\" elif $h==0 then \"\\($m)m\" elif $m==0 then \"\\($h)h\" else \"\\($h)h\\($m)m\" end'", "timeout": 30000 },
+      { "id": "4", "type": "custom-text", "customText": ")", "color": "hex:a6adc8" },
+      { "id": "5", "type": "separator", "color": "hex:585b70" },
+      { "id": "6", "type": "git-branch", "color": "hex:cba6f7", "bold": true, "customSymbol": "", "metadata": { "hideNoGit": "true" } },
+      { "id": "7", "type": "separator", "color": "hex:585b70" },
+      { "id": "8", "type": "custom-symbol", "customSymbol": "💰 ", "color": "hex:a6e3a1" },
+      { "id": "9", "type": "session-cost", "color": "hex:a6e3a1", "rawValue": true },
+      { "id": "10", "type": "custom-text", "customText": " / ", "color": "hex:a6e3a1" },
+      { "id": "11", "type": "custom-command", "color": "hex:a6e3a1", "commandPath": "printf '$%.2f' \"$(bun x ccusage daily --since $(date +%Y%m%d) --json 2>/dev/null | jq -r '.daily[-1].totalCost // 0')\"", "timeout": 30000 },
+      { "id": "12", "type": "separator", "color": "hex:585b70" },
+      { "id": "13", "type": "custom-symbol", "customSymbol": "📥 ", "color": "hex:a6adc8" },
+      { "id": "14", "type": "tokens-input", "color": "hex:a6adc8", "rawValue": true },
+      { "id": "15", "type": "custom-symbol", "customSymbol": " 📤 ", "color": "hex:a6adc8" },
+      { "id": "16", "type": "tokens-output", "color": "hex:a6adc8", "rawValue": true }
+    ],
+    [
+      { "id": "17", "type": "custom-text", "customText": "ctx ", "color": "hex:74c7ec" },
+      { "id": "18", "type": "context-bar", "color": "hex:74c7ec", "rawValue": true, "metadata": { "display": "slider" } },
+      { "id": "19", "type": "separator", "color": "hex:585b70" },
+      { "id": "20", "type": "custom-text", "customText": "5h ", "color": "hex:fab387" },
+      { "id": "21", "type": "session-usage", "color": "hex:fab387", "rawValue": true },
+      { "id": "22", "type": "custom-text", "customText": " (", "color": "hex:a6adc8" },
+      { "id": "23", "type": "reset-timer", "color": "hex:a6adc8", "rawValue": true, "metadata": { "compact": "true" } },
+      { "id": "24", "type": "custom-text", "customText": ")", "color": "hex:a6adc8" },
+      { "id": "25", "type": "separator", "color": "hex:585b70" },
+      { "id": "26", "type": "custom-text", "customText": "7d ", "color": "hex:fab387" },
+      { "id": "27", "type": "weekly-usage", "color": "hex:fab387", "rawValue": true },
+      { "id": "28", "type": "custom-text", "customText": " (", "color": "hex:a6adc8" },
+      { "id": "29", "type": "weekly-reset-timer", "color": "hex:a6adc8", "rawValue": true, "metadata": { "compact": "true" } },
+      { "id": "30", "type": "custom-text", "customText": ")", "color": "hex:a6adc8" }
+    ],
+    [
+      { "id": "31", "type": "custom-text", "customText": "cache: ", "color": "hex:94e2d5" },
+      { "id": "32", "type": "tokens-cached", "color": "hex:94e2d5", "rawValue": true },
+      { "id": "33", "type": "custom-text", "customText": " (", "color": "hex:94e2d5" },
+      { "id": "34", "type": "cache-hit-rate", "color": "hex:94e2d5", "rawValue": true, "metadata": { "cacheScopeSession": "true" } },
+      { "id": "35", "type": "custom-text", "customText": " hit)", "color": "hex:94e2d5" },
+      { "id": "36", "type": "separator", "color": "hex:585b70" },
+      { "id": "37", "type": "custom-text", "customText": "write: ", "color": "hex:94e2d5" },
+      { "id": "38", "type": "cache-write", "color": "hex:94e2d5", "rawValue": true, "metadata": { "cacheScopeSession": "true" } }
+    ]
+  ],
+  "flexMode": "full",
+  "colorLevel": 3
+}
