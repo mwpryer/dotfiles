@@ -120,7 +120,9 @@ symbol = " "
 symbol = " "
 
 [hostname]
-ssh_symbol = " "
+ssh_only = true
+format = "[$hostname\\]]($style) "
+style = "bold peach"
 
 [java]
 format = "[$symbol($version )]($style)"
@@ -248,6 +250,12 @@ symbol = " "
 format = "[\\[$time\\]]($style)"
 style = "subtext0"
 disabled = false
+
+[username]
+show_always = false
+format = "[\\[$user@]($style)"
+style_user = "bold peach"
+style_root = "bold red"
 
 [xmake]
 symbol = " "
