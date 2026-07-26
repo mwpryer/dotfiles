@@ -1,4 +1,10 @@
+git:
+  pagers:
+    - pager: delta --features=lazygit
+    - pager: delta --features=lazygit-split
+
 gui:
+  filterMode: fuzzy
   theme:
     activeBorderColor:
       - "#b4befe"

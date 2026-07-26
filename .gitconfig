@@ -77,6 +77,14 @@ singlekey = true
 navigate = true
 line-numbers = true
 syntax-theme = Catppuccin Mocha
+[delta "lazygit"]
+dark = true
+paging = never
+hyperlinks = true
+hyperlinks-file-link-format = "lazygit-edit://{path}:{line}"
+[delta "lazygit-split"]
+features = lazygit
+side-by-side = true
 [include]
 path = ~/.gitalias.txt
 path = ~/.gitaliases
