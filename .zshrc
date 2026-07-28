@@ -34,6 +34,15 @@ if command -v brew &>/dev/null; then
   safe_source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 fi
 
+# upgrade packages
+if command -v brew &>/dev/null; then
+  alias up="brew update && brew upgrade && brew autoremove && brew cleanup"
+elif command -v yay &>/dev/null; then
+  alias up="yay -Syu && yay -Sc"
+elif command -v pacman &>/dev/null; then
+  alias up="sudo pacman -Syu && sudo pacman -Sc"
+fi
+
 # prompt
 export STARSHIP_CONFIG="${HOME}/.config/starship/starship.toml"
 eval "$(starship init zsh)"
@@ -90,7 +99,7 @@ alias f="fzf"
 # fuzzy cd (also alt+c)
 cdf() { cd "$(fd --type d --hidden --follow --exclude .git | fzf)" && ls; }
 # fuzzy-find file, open in editor
-vf() { local file="$(fzf)" && [[ -n "${file}" ]] && "${EDITOR:-nvim}" "${file}"; }
+vf() { local file="$(fzf)" && [[ -n "${file}" ]] && "${EDITOR}" "${file}"; }
 # trash
 alias trp="trash-put"
 alias trl="trash-list"
@@ -124,6 +133,14 @@ dkxf() {
   [[ -n "${cid}" ]] && docker exec -it "${cid}" "${1:-sh}"
 }
 
+# terraform
+alias tf="terraform"
+alias tfi="terraform init"
+alias tfp="terraform plan"
+alias tfa="terraform apply"
+alias tfd="terraform destroy"
+alias tff="terraform fmt -recursive"
+
 # github
 alias ghpr="gh pr view --web"
 alias ghprc="gh pr create --web"
@@ -144,7 +161,7 @@ tmn() {
   tmux new -s "$(basename "${PWD}")"
 }
 # fuzzy attach to session
-tmf() {
+tmaf() {
   local session="$(tmux ls -F '#{session_name}' 2>/dev/null | fzf --height 40% --layout reverse --border)"
   [[ -n "${session}" ]] && tmux attach -t "${session}"
 }
@@ -183,8 +200,7 @@ alias nb="nr build"
 alias nf="nr format"
 alias nt="nr test"
 alias py="python3"
-alias python="python3"
-alias serve="python -m http.server"
+alias serve="python3 -m http.server"
 # list listening ports
 alias ports="lsof -iTCP -sTCP:LISTEN -P -n"
 # kill process by name
@@ -280,12 +296,15 @@ gcurl() {
 alias -g :j='--format=json | jq -C | less -RFX'
 alias -g :y='--format=yaml | bat -l yaml --style=plain --paging=auto'
 
-# claude code
+# standalone cli installs
 path=("${HOME}/.local/bin" $path)
+
+# claude code
 alias cld="claude --dangerously-skip-permissions"
 alias cldr="claude --dangerously-skip-permissions --resume"
 
 # opencode
+path=("${HOME}/.opencode/bin" $path)
 alias oc="opencode"
 alias ocr="opencode -c"
 

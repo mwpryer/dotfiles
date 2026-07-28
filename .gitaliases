@@ -4,12 +4,13 @@ llh = log-list -n 5
 llr = log-list --date=relative
 lln = log-list --numstat
 
-# fzf
-af = "!f() { git add $(git ls-files --others --modified --deleted --exclude-standard | fzf --preview='git diff {} | delta' --preview-window='~3' --multi --reverse --border); }; f"
-rf = "!f() { git restore --staged $(git diff --cached --name-only | fzf --preview='git diff --staged {} | delta' --preview-window='~3' --multi --reverse --border); }; f"
-bf = "!f() { git switch $(git branch | fzf --reverse --border); }; f"
-df = "!f() { git diff --name-only ${1:-HEAD} | fzf --preview=\"git diff ${1:-HEAD} -- {} | delta\" --preview-window='~3' --multi --reverse --border; }; f"
-xf = "!f() { git restore $(git diff --name-only | fzf --preview='git diff {} | delta' --preview-window='~3' --multi --reverse --border); }; f"
+pick = "!f() { fzf --preview=\"$1\" --preview-window='~3' --multi --reverse --border; }; f"
+af = "!git add $(git ls-files --modified --others --exclude-standard | git pick 'git diff {} | delta')"
+uf = "!git restore --staged $(git diff --cached --name-only | git pick 'git diff --staged {} | delta')"
+bf = "!git switch $(git branch --format='%(refname:short)' | git pick 'git log --oneline -20 {}')"
+df = "!f() { git diff --name-only ${1:-HEAD} | git pick \"git diff ${1:-HEAD} -- {} | delta\"; }; f"
+rf = "!git restore $(git diff --name-only | git pick 'git diff {} | delta')"
+cf = "!git ls-files --others --exclude-standard | git pick 'git diff --no-index /dev/null {} | delta' | xargs -r git clean -f --"
 
 # mirror
 sync = "!git add -A && git commit -m \"sync\" && git push"

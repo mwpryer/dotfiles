@@ -8,12 +8,24 @@
   "diffEditor.ignoreTrimWhitespace": false,
   "files.exclude": {
     "**/node_modules": true,
-    "**/dist": true
+    "**/dist": true,
+    "**/build": true,
+    "**/.next": true,
+    "**/.turbo": true,
+    "**/.venv": true,
+  },
+  "files.readonlyInclude": {
+    "**/route-tree.gen.ts": true,
   },
   "search.exclude": {
-    "package-lock.json": true,
-    "pnpm-lock.yaml": true,
-    "bun.lock": true,
+    "**/package-lock.json": true,
+    "**/pnpm-lock.yaml": true,
+    "**/bun.lock": true,
+    "**/uv.lock": true,
+    "**/route-tree.gen.ts": true,
   },
   "explorer.confirmDelete": false,
+  "claudeCode.preferredLocation": "panel",
+  "gitlens.ai.model": "vscode",
+  "gitlens.ai.vscode.model": "copilotcli:",
 }

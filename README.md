@@ -33,22 +33,21 @@
 - [Neovim](https://github.com/neovim/neovim) - Text editor
 - [Git](https://github.com/git/git) - Version control
 - [lazygit](https://github.com/jesseduffield/lazygit) - Git TUI
-- [critique](https://github.com/remorses/critique) - Git diff review TUI
 - [delta](https://github.com/dandavison/delta) - Syntax-highlighting pager for git
 - [GitHub CLI](https://github.com/cli/cli) - GitHub CLI
 - [act](https://github.com/nektos/act) - Run GitHub Actions locally
 - [Docker](https://www.docker.com/) - Container runtime
 - [lazydocker](https://github.com/jesseduffield/lazydocker) - Docker TUI
-- [Minikube](https://github.com/kubernetes/minikube) - Local Kubernetes cluster
 - [kubectl](https://github.com/kubernetes/kubectl) - Kubernetes CLI
+- [Terraform](https://github.com/hashicorp/terraform) - Infrastructure as code
 - [gcloud](https://cloud.google.com/sdk/gcloud) - Google Cloud CLI
 - [firebase](https://github.com/firebase/firebase-tools) - Firebase CLI
 - [nvm](https://github.com/nvm-sh/nvm) - Node.js version manager
 - [pnpm](https://github.com/pnpm/pnpm) - Node.js package manager
 - [bun](https://github.com/oven-sh/bun) - Bun.js runtime
 - [uv](https://github.com/astral-sh/uv) - Python package manager
-- [Ollama](https://github.com/ollama/ollama) - Local LLM runtime
 - [Claude Code](https://github.com/anthropics/claude-code) - Claude Code
+- [Codex](https://github.com/openai/codex) - Codex
 - [OpenCode](https://github.com/anomalyco/opencode) - OpenCode
 
 </details>

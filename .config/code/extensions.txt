@@ -2,7 +2,8 @@ anthropic.claude-code
 catppuccin.catppuccin-vsc
 eamodio.gitlens
 editorconfig.editorconfig
-github.copilot-chat
+github.vscode-pull-request-github
+hashicorp.terraform
 mhutchie.git-graph
 ms-vscode-remote.remote-ssh
 ms-vscode-remote.remote-ssh-edit
