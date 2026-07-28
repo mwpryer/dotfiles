@@ -14,6 +14,8 @@ safe_source() {
 # deduplicate PATH, keeping first occurrence
 typeset -U PATH path
 
+path=("${HOME}/.local/bin" $path)
+
 # zsh options
 setopt autocd
 setopt beep
@@ -224,19 +226,11 @@ kpf() {
   [[ -n "${pid}" ]] && echo "${pid}" | xargs kill -"${1:-9}"
 }
 
-# nvm
-export NVM_DIR="${HOME}/.nvm"
-safe_source "${NVM_DIR}/nvm.sh"
-safe_source "${NVM_DIR}/bash_completion"
-
-# pnpm
-export PNPM_HOME="${HOME}/.local/share/pnpm"
-path=("${PNPM_HOME}" $path)
+# mise
+eval "$(mise activate zsh)"
 
 # bun
-export BUN_INSTALL="${HOME}/.bun"
-path=("${BUN_INSTALL}/bin" $path)
-safe_source "${HOME}/.bun/_bun"
+eval "$(bun completions)"
 
 # uv
 eval "$(uv generate-shell-completion zsh)"
@@ -295,9 +289,6 @@ gcurl() {
 # append to a gcloud command to format output
 alias -g :j='--format=json | jq -C | less -RFX'
 alias -g :y='--format=yaml | bat -l yaml --style=plain --paging=auto'
-
-# standalone cli installs
-path=("${HOME}/.local/bin" $path)
 
 # claude code
 alias cld="claude --dangerously-skip-permissions"

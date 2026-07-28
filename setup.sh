@@ -6,6 +6,12 @@ TMUX_PLUGIN_DIR="${HOME}/.config/tmux/plugins"
 # symlink dotfiles, --no-folding avoids symlinking entire dirs
 cd "${HOME}/dotfiles" && stow --no-folding .
 
+# mise tools, trust needed since config.toml is a symlink into dotfiles
+if command -v mise >/dev/null 2>&1; then
+  mise trust "${HOME}/dotfiles"
+  mise install
+fi
+
 # tmux plugins
 if [[ ! -d "${TMUX_PLUGIN_DIR}/tpm" ]]; then
   git clone https://github.com/tmux-plugins/tpm "${TMUX_PLUGIN_DIR}/tpm"

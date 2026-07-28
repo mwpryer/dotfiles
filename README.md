@@ -42,7 +42,7 @@
 - [Terraform](https://github.com/hashicorp/terraform) - Infrastructure as code
 - [gcloud](https://cloud.google.com/sdk/gcloud) - Google Cloud CLI
 - [firebase](https://github.com/firebase/firebase-tools) - Firebase CLI
-- [nvm](https://github.com/nvm-sh/nvm) - Node.js version manager
+- [mise](https://github.com/jdx/mise) - Runtime version and global CLI manager
 - [pnpm](https://github.com/pnpm/pnpm) - Node.js package manager
 - [bun](https://github.com/oven-sh/bun) - Bun.js runtime
 - [uv](https://github.com/astral-sh/uv) - Python package manager

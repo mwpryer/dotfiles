@@ -1,0 +1,14 @@
+[settings]
+minimum_release_age = "24h"
+python.uv_venv_auto = "source"
+
+[env]
+UV_PYTHON_PREFERENCE = "only-system"
+
+[tools]
+node = "latest"
+pnpm = "latest"
+bun = "latest"
+java = "lts"
+python = "latest"
+uv = "latest"
