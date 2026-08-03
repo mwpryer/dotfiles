@@ -25,7 +25,6 @@
     "**/route-tree.gen.ts": true,
   },
   "explorer.confirmDelete": false,
-  "claudeCode.preferredLocation": "panel",
-  "gitlens.ai.model": "vscode",
-  "gitlens.ai.vscode.model": "copilotcli:",
+  "workbench.experimental.modernUI": true,
+  "workbench.browser.openLocalhostLinks": false,
 }
