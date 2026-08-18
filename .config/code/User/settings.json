@@ -27,4 +27,5 @@
   "explorer.confirmDelete": false,
   "workbench.experimental.modernUI": true,
   "workbench.browser.openLocalhostLinks": false,
+  "editor.wordWrap": "on",
 }

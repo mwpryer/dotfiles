@@ -12,3 +12,7 @@ bun = "latest"
 java = "lts"
 python = "latest"
 uv = "latest"
+
+"npm:firebase-tools" = "latest"
+"npm:@googleworkspace/cli" = "latest"
+"npm:@mwp13/pm" = "latest"

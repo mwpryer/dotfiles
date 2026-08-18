@@ -102,11 +102,6 @@ alias f="fzf"
 cdf() { cd "$(fd --type d --hidden --follow --exclude .git | fzf)" && ls; }
 # fuzzy-find file, open in editor
 vf() { local file="$(fzf)" && [[ -n "${file}" ]] && "${EDITOR}" "${file}"; }
-# trash
-alias trp="trash-put"
-alias trl="trash-list"
-alias trr="trash-restore"
-
 # git
 alias g="git"
 alias lg="lazygit"
@@ -236,6 +231,9 @@ eval "$(bun completions)"
 eval "$(uv generate-shell-completion zsh)"
 eval "$(uvx --generate-shell-completion zsh)"
 
+# turso
+path=("${HOME}/.turso" $path)
+
 # gcloud
 safe_source "${HOME}/google-cloud-sdk/path.zsh.inc"
 safe_source "${HOME}/google-cloud-sdk/completion.zsh.inc"
@@ -293,6 +291,8 @@ alias -g :y='--format=yaml | bat -l yaml --style=plain --paging=auto'
 # claude code
 alias cld="claude --dangerously-skip-permissions"
 alias cldr="claude --dangerously-skip-permissions --resume"
+alias cldo="claude --dangerously-skip-permissions --model opus"
+alias cldf="claude --dangerously-skip-permissions --model fable"
 
 # opencode
 path=("${HOME}/.opencode/bin" $path)

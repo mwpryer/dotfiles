@@ -34,6 +34,7 @@
 - [Git](https://github.com/git/git) - Version control
 - [lazygit](https://github.com/jesseduffield/lazygit) - Git TUI
 - [delta](https://github.com/dandavison/delta) - Syntax-highlighting pager for git
+- [git-absorb](https://github.com/tummychow/git-absorb) - Automatic fixup commits
 - [GitHub CLI](https://github.com/cli/cli) - GitHub CLI
 - [act](https://github.com/nektos/act) - Run GitHub Actions locally
 - [Docker](https://www.docker.com/) - Container runtime
@@ -42,6 +43,8 @@
 - [Terraform](https://github.com/hashicorp/terraform) - Infrastructure as code
 - [gcloud](https://cloud.google.com/sdk/gcloud) - Google Cloud CLI
 - [firebase](https://github.com/firebase/firebase-tools) - Firebase CLI
+- [Turso](https://github.com/tursodatabase/turso-cli) - Turso database CLI
+- [cloudflared](https://github.com/cloudflare/cloudflared) - Cloudflare tunnel client
 - [mise](https://github.com/jdx/mise) - Runtime version and global CLI manager
 - [pnpm](https://github.com/pnpm/pnpm) - Node.js package manager
 - [bun](https://github.com/oven-sh/bun) - Bun.js runtime
@@ -72,6 +75,7 @@
 - [btop](https://github.com/aristocratos/btop) - System resource monitor
 - [fastfetch](https://github.com/fastfetch-cli/fastfetch) - System information display
 - [ImageMagick](https://github.com/ImageMagick/ImageMagick) - Image processing
+- [vhs](https://github.com/charmbracelet/vhs) - Terminal recordings as GIFs
 - [espanso](https://github.com/espanso/espanso) - Text expander
 
 </details>
