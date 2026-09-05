@@ -1,8 +1,7 @@
 git:
-  pagers:
-    - pager: delta --features=lazygit
-    - pager: delta --features=lazygit-split
-
+  diffRenderers:
+    - command: delta --features=lazygit
+    - command: delta --features=lazygit-split
 gui:
   filterMode: fuzzy
   theme:

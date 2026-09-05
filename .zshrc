@@ -163,6 +163,11 @@ tmaf() {
   [[ -n "${session}" ]] && tmux attach -t "${session}"
 }
 
+# herdr
+alias hd="herdr"
+alias hdr="herdr --remote"
+hdw() { herdr workspace create --cwd "${1:-$PWD}" --focus >/dev/null && ! pgrep -f '^herdr$' >/dev/null && herdr }
+
 # yazi
 # drop into current dir on exit
 y() {
@@ -179,9 +184,9 @@ code-sync() {
   local installed="$(code --list-extensions)"
   local wanted="$(<"${extfile}")"
   # install missing
-  comm -23 <(echo "${wanted}" | sort) <(echo "${installed}" | sort) | xargs -n1 code --install-extension
+  comm -23 <(echo "${wanted}" | sort) <(echo "${installed}" | sort) | xargs -rn1 code --install-extension
   # uninstall removed
-  comm -13 <(echo "${wanted}" | sort) <(echo "${installed}" | sort) | xargs -n1 code --uninstall-extension
+  comm -13 <(echo "${wanted}" | sort) <(echo "${installed}" | sort) | xargs -rn1 code --uninstall-extension
   # update list
   code --list-extensions >"${extfile}"
 }
@@ -238,7 +243,30 @@ path=("${HOME}/.turso" $path)
 safe_source "${HOME}/google-cloud-sdk/path.zsh.inc"
 safe_source "${HOME}/google-cloud-sdk/completion.zsh.inc"
 alias gc="gcloud"
+# append to a gcloud command to format output
+alias -g :j='--format=json | jq -C | less -RFX'
+alias -g :y='--format=yaml | bat -l yaml --style=plain --paging=auto'
+# curl any gcp api with auto-injected bearer token
+gcurl() {
+  curl -H "Authorization: Bearer $(gcloud auth print-access-token)" -H "Content-Type: application/json" "$@"
+}
+# auth
+alias gcal="gcloud auth login"
 alias gcad="gcloud auth application-default login"
+# switch gcloud account with fzf
+gcaf() {
+  local account="$(gcloud auth list --format="value(account)" | fzf --height 40% --layout reverse --border)"
+  if [[ -n "${account}" ]]; then
+    gcloud config set account "${account}"
+    gcpe
+  fi
+}
+# revoke gcloud accounts with fzf multi-select (tab to mark)
+gcarf() {
+  local accounts="$(gcloud auth list --format="value(account)" | fzf -m --height 40% --layout reverse --border --header="tab to select, enter to revoke")"
+  [[ -n "${accounts}" ]] && echo "${accounts}" | xargs gcloud auth revoke
+}
+# project
 # export current gcloud project as env vars
 gcpe() {
   local project_id="$(gcloud config get core/project 2>/dev/null)"
@@ -259,19 +287,6 @@ gcpf() {
     gcpe
   fi
 }
-# switch gcloud account with fzf
-gcaf() {
-  local account="$(gcloud auth list --format="value(account)" | fzf --height 40% --layout reverse --border)"
-  if [[ -n "${account}" ]]; then
-    gcloud config set account "${account}"
-    gcpe
-  fi
-}
-# revoke gcloud accounts with fzf multi-select (tab to mark)
-gcarf() {
-  local accounts="$(gcloud auth list --format="value(account)" | fzf -m --height 40% --layout reverse --border --header="tab to select, enter to revoke")"
-  [[ -n "${accounts}" ]] && echo "${accounts}" | xargs gcloud auth revoke
-}
 # switch gcloud configuration with fzf (bundle of account + project + defaults)
 gccf() {
   local config="$(gcloud config configurations list --format="value(name)" | fzf --height 40% --layout reverse --border)"
@@ -280,19 +295,33 @@ gccf() {
     gcpe
   fi
 }
-# curl any gcp api with auto-injected bearer token
-gcurl() {
-  curl -H "Authorization: Bearer $(gcloud auth print-access-token)" -H "Content-Type: application/json" "$@"
+# cloud run
+# proxy a cloud run service to localhost, optional port
+gcrpf() {
+  local service region
+  read -r service region <<<"$(gcloud run services list --format='value(metadata.name,metadata.labels."cloud.googleapis.com/location")' | fzf --height 40% --layout reverse --border)"
+  [[ -n "${service}" ]] && gcloud run services proxy "${service}" --region "${region}" --port "${1:-8080}"
 }
-# append to a gcloud command to format output
-alias -g :j='--format=json | jq -C | less -RFX'
-alias -g :y='--format=yaml | bat -l yaml --style=plain --paging=auto'
+# read recent cloud run service logs
+gcrlf() {
+  local service region
+  read -r service region <<<"$(gcloud run services list --format='value(metadata.name,metadata.labels."cloud.googleapis.com/location")' | fzf --height 40% --layout reverse --border)"
+  [[ -n "${service}" ]] && gcloud run services logs read "${service}" --region "${region}"
+}
+# secrets
+# print latest secret version
+gcsf() {
+  local secret="$(gcloud secrets list --format="value(name)" | fzf --height 40% --layout reverse --border)"
+  [[ -n "${secret}" ]] && gcloud secrets versions access latest --secret="${secret}"
+}
 
 # claude code
 alias cld="claude --dangerously-skip-permissions"
 alias cldr="claude --dangerously-skip-permissions --resume"
-alias cldo="claude --dangerously-skip-permissions --model opus"
 alias cldf="claude --dangerously-skip-permissions --model fable"
+alias cldo="claude --dangerously-skip-permissions --model opus"
+alias clds="claude --dangerously-skip-permissions --model sonnet"
+alias cldp="claude -p"
 
 # opencode
 path=("${HOME}/.opencode/bin" $path)
