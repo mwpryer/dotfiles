@@ -120,7 +120,7 @@ alias gcal="gcloud auth login"
 alias gcad="gcloud auth application-default login"
 # switch gcloud account with fzf
 gcaf() {
-  local account="$(gcloud auth list --format="value(account)" | fzf --height 40% --layout reverse --border)"
+  local account="$(gcloud auth list --format="value(account)" | fzf)"
   if [[ -n "${account}" ]]; then
     gcloud config set account "${account}"
     gcpe
@@ -128,7 +128,7 @@ gcaf() {
 }
 # revoke gcloud accounts with fzf multi-select (tab to mark)
 gcarf() {
-  local accounts="$(gcloud auth list --format="value(account)" | fzf -m --height 40% --layout reverse --border --header="tab to select, enter to revoke")"
+  local accounts="$(gcloud auth list --format="value(account)" | fzf -m --header="tab to select, enter to revoke")"
   [[ -n "${accounts}" ]] && echo "${accounts}" | xargs gcloud auth revoke
 }
 # project
@@ -146,7 +146,7 @@ gcpe() {
 }
 # switch gcloud project with fzf
 gcpf() {
-  local project_id="$(gcloud projects list --format="value(projectId)" | fzf --height 40% --layout reverse --border)"
+  local project_id="$(gcloud projects list --format="value(projectId)" | fzf)"
   if [[ -n "${project_id}" ]]; then
     gcloud config set project "${project_id}"
     gcpe
@@ -154,7 +154,7 @@ gcpf() {
 }
 # switch gcloud configuration with fzf (bundle of account + project + defaults)
 gccf() {
-  local config="$(gcloud config configurations list --format="value(name)" | fzf --height 40% --layout reverse --border)"
+  local config="$(gcloud config configurations list --format="value(name)" | fzf)"
   if [[ -n "${config}" ]]; then
     gcloud config configurations activate "${config}"
     gcpe
@@ -164,19 +164,19 @@ gccf() {
 # proxy a cloud run service to localhost, optional port
 gcrpf() {
   local service region
-  read -r service region <<<"$(gcloud run services list --format='value(metadata.name,metadata.labels."cloud.googleapis.com/location")' | fzf --height 40% --layout reverse --border)"
+  read -r service region <<<"$(gcloud run services list --format='value(metadata.name,metadata.labels."cloud.googleapis.com/location")' | fzf)"
   [[ -n "${service}" ]] && gcloud run services proxy "${service}" --region "${region}" --port "${1:-8080}"
 }
 # read recent cloud run service logs
 gcrlf() {
   local service region
-  read -r service region <<<"$(gcloud run services list --format='value(metadata.name,metadata.labels."cloud.googleapis.com/location")' | fzf --height 40% --layout reverse --border)"
+  read -r service region <<<"$(gcloud run services list --format='value(metadata.name,metadata.labels."cloud.googleapis.com/location")' | fzf)"
   [[ -n "${service}" ]] && gcloud run services logs read "${service}" --region "${region}"
 }
 # secrets
 # print latest secret version
 gcsf() {
-  local secret="$(gcloud secrets list --format="value(name)" | fzf --height 40% --layout reverse --border)"
+  local secret="$(gcloud secrets list --format="value(name)" | fzf)"
   [[ -n "${secret}" ]] && gcloud secrets versions access latest --secret="${secret}"
 }
 
@@ -188,7 +188,13 @@ alias cldo="claude --dangerously-skip-permissions --model opus"
 alias clds="claude --dangerously-skip-permissions --model sonnet"
 alias cldp="claude -p"
 
+# codex
+alias cdx="codex --dangerously-bypass-approvals-and-sandbox"
+alias cdxr="codex resume --dangerously-bypass-approvals-and-sandbox"
+alias cdxp="codex exec"
+
 # opencode
 path=("${HOME}/.opencode/bin" $path)
-alias oc="opencode"
-alias ocr="opencode -c"
+alias oc="opencode --auto"
+alias ocr="opencode --auto -c"
+alias ocp="opencode run --auto"

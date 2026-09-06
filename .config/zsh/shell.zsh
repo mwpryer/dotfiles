@@ -39,17 +39,11 @@ export FZF_DEFAULT_OPTS=" \
 --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
 --color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
 --color=selected-bg:#45475a \
---multi"
+--height 40% --reverse --border"
 # fd as fzf backend
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 export FZF_CTRL_T_COMMAND="${FZF_DEFAULT_COMMAND}"
 export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
-# fuzzy find with bat preview
-alias fzfp="fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'"
-# fuzzy find (also ctrl+t)
-alias f="fzf"
-# fuzzy cd (also alt+c)
-cdf() { cd "$(fd --type d --hidden --follow --exclude .git | fzf)" && ls; }
 # fuzzy-find file, open in editor
 vf() { local file="$(fzf)" && [[ -n "${file}" ]] && "${EDITOR}" "${file}"; }
 
@@ -66,7 +60,7 @@ tmn() {
 }
 # fuzzy attach to session
 tmaf() {
-  local session="$(tmux ls -F '#{session_name}' 2>/dev/null | fzf --height 40% --layout reverse --border)"
+  local session="$(tmux ls -F '#{session_name}' 2>/dev/null | fzf)"
   [[ -n "${session}" ]] && tmux attach -t "${session}"
 }
 
