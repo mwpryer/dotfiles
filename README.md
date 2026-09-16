@@ -21,6 +21,7 @@
 - [Ghostty](https://github.com/ghostty-org/ghostty) - Terminal emulator
 - [Starship](https://github.com/starship/starship) - Custom shell prompt
 - [tmux](https://github.com/tmux/tmux) - Terminal multiplexer
+- [atuin](https://github.com/atuinsh/atuin) - Shell history
 - [herdr](https://github.com/herdrdev/herdr) - Workspace manager for coding agents
 
 </details>

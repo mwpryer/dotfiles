@@ -1,13 +1,15 @@
 [user]
 name = Matt Pryer
 email = 81967541+mwpryer@users.noreply.github.com
-signingkey = BB8FF16C7BC1A369
+signingkey = ~/.ssh/id_ed25519_github.pub
 [core]
 pager = delta
 excludesfile = ~/.gitignore
 autocrlf = input
 whitespace = error
 preloadindex = true
+untrackedCache = true
+fsmonitor = true
 [init]
 defaultBranch = main
 [help]
@@ -15,7 +17,11 @@ autocorrect = prompt
 [commit]
 # show diff when writing commit message
 verbose = true
-sign = true
+gpgsign = true
+[gpg]
+format = ssh
+[gpg "ssh"]
+allowedSignersFile = ~/.ssh/allowed_signers
 [branch]
 sort = -committerdate
 [tag]
@@ -88,6 +94,7 @@ side-by-side = true
 [include]
 path = ~/.gitalias.txt
 path = ~/.gitaliases
+path = ~/.gitconfig.local
 [filter "homedir"]
 clean = sed \"s|$HOME|\\$HOME|g\"
 smudge = sed \"s|\\$HOME|$HOME|g\"

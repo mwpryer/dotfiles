@@ -1,20 +1,18 @@
-export HISTFILE="${HOME}/.histfile"
-export HISTSIZE=10000
-export SAVEHIST=10000
-export EDITOR="code"
-export VISUAL="code --wait"
-# gpg tty for commit signing
-export GPG_TTY="$(tty)"
-
 # source file if it exists
 safe_source() {
   [[ -s "$1" ]] && source "$1"
 }
 
-# deduplicate PATH, keeping first occurrence
-typeset -U PATH path
-
-path=("${HOME}/bin" "${HOME}/.local/bin" $path)
+# history
+export HISTFILE="${HOME}/.histfile"
+export HISTSIZE=100000
+export SAVEHIST=100000
+setopt extended_history
+setopt share_history
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_space
+setopt hist_reduce_blanks
 
 # zsh options
 setopt autocd

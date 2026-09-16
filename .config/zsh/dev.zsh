@@ -94,15 +94,11 @@ kpf() {
 eval "$(mise activate zsh)"
 
 # bun
-path=("${HOME}/.bun/bin" $path)
 eval "$(bun completions)"
 
 # uv
 eval "$(uv generate-shell-completion zsh)"
 eval "$(uvx --generate-shell-completion zsh)"
-
-# turso
-path=("${HOME}/.turso" $path)
 
 # gcloud
 safe_source "${HOME}/google-cloud-sdk/path.zsh.inc"
@@ -194,7 +190,6 @@ alias cdxr="codex resume --dangerously-bypass-approvals-and-sandbox"
 alias cdxp="codex exec"
 
 # opencode
-path=("${HOME}/.opencode/bin" $path)
 alias oc="opencode --auto"
 alias ocr="opencode --auto -c"
 alias ocp="opencode run --auto"

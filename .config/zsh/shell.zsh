@@ -25,7 +25,6 @@ alias lt="eza --long --tree --level=3 --icons --git --group-directories-first --
 # bat
 alias cat="bat"
 # colourise help with bat
-alias -g -- -h="-h 2>&1 | bat --language=help --style=plain"
 alias -g -- --help="--help 2>&1 | bat --language=help --style=plain"
 # bat as man pager
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
@@ -46,6 +45,9 @@ export FZF_CTRL_T_COMMAND="${FZF_DEFAULT_COMMAND}"
 export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
 # fuzzy-find file, open in editor
 vf() { local file="$(fzf)" && [[ -n "${file}" ]] && "${EDITOR}" "${file}"; }
+
+# atuin, after fzf so it owns ctrl-r
+eval "$(atuin init zsh --disable-up-arrow)"
 
 # tmux
 alias tm="tmux"
