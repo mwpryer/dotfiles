@@ -15,9 +15,6 @@ alias mkd="mkdir -pv"
 mkcd() {
   mkdir -p "$1" && cd "$1"
 }
-alias mv="mv -vi"
-alias cp="cp -vi"
-alias rm="rm -vI"
 # eza
 alias ls="eza -a --icons --group-directories-first"
 alias ll="eza -lahF --icons --git --group-directories-first"
