@@ -17,7 +17,7 @@ autocorrect = prompt
 [commit]
 # show diff when writing commit message
 verbose = true
-gpgsign = true
+gpgsign = false
 [gpg]
 format = ssh
 [gpg "ssh"]
