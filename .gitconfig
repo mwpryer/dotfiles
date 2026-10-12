@@ -98,6 +98,8 @@ path = ~/.gitconfig.local
 [filter "homedir"]
 clean = sed \"s|$HOME|\\$HOME|g\"
 smudge = sed \"s|\\$HOME|$HOME|g\"
+[filter "npmrc"]
+clean = sed /_authToken=/d
 [url "https://github.com/"]
 insteadOf = "gh:"
 [url "https://github.com/mwpryer/"]

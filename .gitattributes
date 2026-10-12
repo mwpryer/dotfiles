@@ -1,2 +1,3 @@
 * filter=homedir
 .gitconfig filter=
+.npmrc filter=npmrc
