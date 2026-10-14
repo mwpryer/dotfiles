@@ -114,6 +114,11 @@ gcurl() {
 # auth
 alias gcal="gcloud auth login"
 alias gcad="gcloud auth application-default login"
+# adc login as a service account with fzf
+gcadf() {
+  local service_account="$(gcloud iam service-accounts list --format="value(email)" | fzf)"
+  [[ -n "${service_account}" ]] && gcloud auth application-default login --impersonate-service-account "${service_account}"
+}
 # switch gcloud account with fzf
 gcaf() {
   local account="$(gcloud auth list --format="value(account)" | fzf)"

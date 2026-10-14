@@ -50,6 +50,13 @@ symbol = " "
 [crystal]
 symbol = " "
 
+[custom.adc]
+command = "jq -r '.service_account_impersonation_url // empty | capture(\"serviceAccounts/(?<sa>[^@]+)\").sa' ~/.config/gcloud/application_default_credentials.json"
+when = true
+symbol = " "
+style = "peach"
+format = "([$symbol$output]($style) )"
+
 [dart]
 symbol = " "
 
