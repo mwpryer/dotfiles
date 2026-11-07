@@ -12,6 +12,7 @@ bun = "latest"
 java = "lts"
 python = "latest"
 uv = "latest"
+terraform = "latest"
 
 "npm:firebase-tools" = "latest"
 "npm:@googleworkspace/cli" = "latest"
